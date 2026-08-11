@@ -1,8 +1,8 @@
 {
-  "name": "salesforce-app",
+  "name": "sf-account-timezones",
   "private": true,
   "version": "1.0.0",
-  "description": "Salesforce App",
+  "description": "Salesforce App to calculate an account's local time, using TimeZoneDB API on the given billing address.",
   "scripts": {
     "lint": "eslint **/{aura,lwc}/**/*.js",
     "test": "npm run test:unit",
