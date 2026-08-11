@@ -25,9 +25,9 @@ There are a few settings to change in your org before you can use the component.
 
 # Errors
 If you see "No time zone available for this location." shown on the component:
-    You need to wait / reload the page for the changes to take effect,
-    You entered an incomplete or unsupported address, or
-    The TimeZoneBD API is down.
+    You need to wait / reload the page for the changes to take effect,\
+    You entered an incomplete or unsupported address, or\
+    The TimeZoneBD API is down.\
 
 # Deployment and Usage
 Deploy this project to your Salesforce environment using the Salesforce CLI:
