@@ -3,7 +3,7 @@ import { getRecord } from 'lightning/uiRecordApi';
 import { refreshApex } from '@salesforce/apex';
 import getAccountTimeZone from '@salesforce/apex/AccountTimeController.getAccountTimeZone';
 
-// Specify the fields we want to monitor for changes
+// Monitor these fields for changes
 const FIELDS = [
     'Account.BillingStreet',
     'Account.BillingCity',
@@ -26,21 +26,21 @@ export default class AccountLocalTime extends LightningElement {
 
     wiredTimeZoneResult; // Stores the Apex result object so we can refresh it later
 
-    // 1. Listen for standard record saves/edits
+    // Listen for record edits
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
     wiredAccount({ error, data }) {
         if (data) {
-            // When the user saves an address change, show the spinner...
+            // Show spinner when user changes the address
             this.isLoading = true;
             
-            // ...and force the Apex method to fetch the new time zone
+            // fetch the new time zone again
             if (this.wiredTimeZoneResult) {
                 refreshApex(this.wiredTimeZoneResult);
             }
         }
     }
 
-    // 2. Fetch the time zone from Apex
+    // Fetch the time zone from Apex
     @wire(getAccountTimeZone, { accountId: '$recordId' })
     wiredTimeZone(result) {
         this.wiredTimeZoneResult = result; 

@@ -4,7 +4,7 @@ public with sharing class AccountTimeController {
     
     @AuraEnabled(cacheable=true)
     public static String getAccountTimeZone(Id accountId) {
-        // Query the native Salesforce Geocode fields
+        // Get Salesforce Geocode fields
         Account acc = [
             SELECT BillingLatitude, BillingLongitude 
             FROM Account 
@@ -12,13 +12,13 @@ public with sharing class AccountTimeController {
             LIMIT 1
         ];
 
-        // If Salesforce hasn't geocoded the address yet, fallback
+        // Fallback if Salesforce hasn't geocoded the address yet
         if (acc.BillingLatitude == null || acc.BillingLongitude == null) {
             return null;
         }
 
         try {
-            // Pass the exact coordinates to a Time Zone API
+            // Pass the coordinates TimeZoneDB
             String endpoint = 'https://api.timezonedb.com/v2.1/get-time-zone?key=' + API_KEY
                               + '&format=json&by=position&lat=' + acc.BillingLatitude 
                               + '&lng=' + acc.BillingLongitude;
@@ -33,7 +33,7 @@ public with sharing class AccountTimeController {
             if (response.getStatusCode() == 200) {
                 Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
                 
-                // Return the IANA string (e.g., "America/Los_Angeles")
+                // Return the IANA string
                 if (results.containsKey('zoneName')) {
                     return (String) results.get('zoneName');
                 }
