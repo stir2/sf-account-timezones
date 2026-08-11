@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="Account Local Time" icon-name="utility:clock">
+        <div class="slds-p-around_medium slds-text-align_center">
+            
+            <!-- 1. Explicit Loading State -->
+            <template lwc:if={isLoading}>
+                <!-- A relative div gives the spinner a contained space to spin in -->
+                <div style="position: relative; height: 50px;">
+                    <lightning-spinner alternative-text="Calculating local time..." size="small"></lightning-spinner>
+                </div>
+            </template>
+            
+            <!-- 2. Valid Time State -->
+            <template lwc:elseif={currentTime}>
+                <div class="slds-text-heading_large slds-text-color_success">
+                    {currentTime}
+                </div>
+                <div class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+                    Zone: {timeZone}
+                </div>
+            </template>
+            
+            <!-- 3. Null/No Data State -->
+            <template lwc:elseif={noData}>
+                <div class="slds-text-color_weak">
+                    No time zone available for this location.
+                </div>
+            </template>
+            
+            <!-- 4. Fatal Error State -->
+            <template lwc:elseif={error}>
+                <div class="slds-text-color_error">
+                    {error}
+                </div>
+            </template>
+            
+        </div>
+    </lightning-card>
+</template>
