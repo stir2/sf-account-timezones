@@ -30,5 +30,5 @@ If you see "No time zone available for this location." shown on the component:
 - The TimeZoneBD API is down.
 
 # Deployment and Usage
-Deploy this project to your Salesforce environment using the Salesforce CLI:
+Deploy this project to your Salesforce environment using the Salesforce CLI:\
 sf project deploy start --source-dir force-app
