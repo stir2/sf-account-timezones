@@ -1,4 +1,6 @@
 # Account Local Time Component
+<img width="1920" height="1080" alt="Account Local Time Component" src="https://github.com/user-attachments/assets/2e4ab102-cc83-44e7-8363-768a606993c9" />
+
 The Account Local Time component is a Lightning Web Component (LWC) that calculates and displays the live local time of any Account based on its Billing Address. 
 
 This component uses Salesforce's geocoding engine to parse the address into GPS coordinates. It then uses the GPS coordinates to fetch the IANA time zone from TimeZoneDB, which should be accurate even across complex global borders and daylight saving time shifts.
